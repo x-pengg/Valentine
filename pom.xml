@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>me.ridog</groupId>
+    <artifactId>blog-valentine-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- project description -->
+    <name>Blog Valentine - Parent</name>
+    <description>锟斤拷烫烫烫</description>
+    <url>https://github.com/x-pengg</url>
+    <inceptionYear>08/07/2016</inceptionYear>
+
+    <!-- developer -->
+    <developers>
+        <developer>
+            <name>Tate Chan</name>
+            <email>i@ridog.me</email>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>commom</module>
+        <module>back</module>
+        <module>front</module>
+        <module>app</module>
+    </modules>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <downloadJavadocs>true</downloadJavadocs>
+        <downloadSources>true</downloadSources>
+    </properties>
+
+    <dependencyManagement>
+
+
+       <dependencies>
+           <!-- Import dependency management from Spring Boot -->
+           <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-dependencies</artifactId>
+               <version>1.3.5.RELEASE</version>
+               <type>pom</type>
+               <scope>import</scope>
+           </dependency>
+
+           <!-- Druid连接池 -->
+           <dependency>
+               <groupId>com.alibaba</groupId>
+               <artifactId>druid</artifactId>
+               <version>1.0.20</version>
+           </dependency>
+
+           <dependency>
+               <groupId>commons-logging</groupId>
+               <artifactId>commons-logging</artifactId>
+               <version>1.1.3</version>
+           </dependency>
+
+           <!-- json -->
+           <dependency>
+               <groupId>com.alibaba</groupId>
+               <artifactId>fastjson</artifactId>
+               <version>1.2.8</version>
+           </dependency>
+
+           <!-- guava -->
+           <dependency>
+               <groupId>com.google.guava</groupId>
+               <artifactId>guava</artifactId>
+               <version>19.0</version>
+           </dependency>
+
+       </dependencies>
+
+    </dependencyManagement>
+
+
+</project>
