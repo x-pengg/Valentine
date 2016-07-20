@@ -22,10 +22,10 @@
             <version>${project.version}</version>
         </dependency>
 
-        <!-- valentine-back -->
+        <!-- valentine-api -->
         <dependency>
             <groupId>me.ridog</groupId>
-            <artifactId>blog-valentine-back</artifactId>
+            <artifactId>blog-valentine-api</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -69,7 +69,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>Application</mainClass>
+                    <mainClass>me.ridog.valentine.Application</mainClass>
                 </configuration>
             </plugin>
         </plugins>
