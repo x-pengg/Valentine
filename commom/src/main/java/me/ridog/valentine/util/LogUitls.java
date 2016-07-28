@@ -1,4 +1,4 @@
-package me.ridog.valentine.helper;
+package me.ridog.valentine.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,9 +9,9 @@ import java.util.Date;
 /**
  * Created by Tate on 2016/7/15.
  */
-public class LogHelper {
+public class LogUitls {
 
-    private static final Logger logger = LoggerFactory.getLogger(LogHelper.class);
+    private static final Logger logger = LoggerFactory.getLogger(LogUitls.class);
 
 
     public static void info(Object info){

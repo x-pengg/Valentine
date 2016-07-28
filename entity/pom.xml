@@ -9,17 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>blog-valentine-front</artifactId>
-
+    <artifactId>blog-valentine-entity</artifactId>
     <packaging>jar</packaging>
-
-    <dependencies>
-        <dependency>
-            <groupId>me.ridog</groupId>
-            <artifactId>blog-valentine-commom</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>
@@ -29,5 +20,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

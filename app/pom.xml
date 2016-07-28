@@ -11,16 +11,8 @@
 
     <artifactId>blog-valentine-app</artifactId>
 
-    <packaging>jar</packaging>
 
     <dependencies>
-
-        <!-- valentine-front -->
-        <dependency>
-            <groupId>me.ridog</groupId>
-            <artifactId>blog-valentine-front</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <!-- valentine-api -->
         <dependency>

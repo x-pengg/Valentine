@@ -5,6 +5,7 @@
 out
 target
 *.log
+generatorConfig.xml
 
 # OSX
 .DS_Store

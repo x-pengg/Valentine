@@ -1,8 +1,8 @@
-package me.ridog.valentine.configuration;
+package me.ridog.valentine.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import me.ridog.valentine.annotation.NeedLogin;
-import me.ridog.valentine.helper.LogHelper;
+import me.ridog.valentine.util.LogUitls;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -20,11 +20,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if (handler instanceof HandlerMethod) {
             String uri = request.getRequestURI();
             HandlerMethod handlerMethod = (HandlerMethod) handler;
-            LogHelper.info("URL:"+uri+"->method:" + handlerMethod.getBean().getClass()
+            LogUitls.info("URL:"+uri+"->method:" + handlerMethod.getBean().getClass()
                     .getSimpleName() + "." + handlerMethod
                     .getMethod().getName() + "   arguments:"+JSON.toJSONString(request.getParameterMap()));
             if (needLogin(handlerMethod)) {
-                LogHelper.info("需要登录");
+                LogUitls.info("需要登录");
             }
 
         }

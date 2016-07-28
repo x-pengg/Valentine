@@ -9,9 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>blog-valentine-api</artifactId>
-
-    <packaging>jar</packaging>
+    <artifactId>blog-valentine-service</artifactId>
 
     <dependencies>
 
@@ -21,28 +19,19 @@
             <artifactId>blog-valentine-commom</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- commom -->
+        <!-- entity -->
         <dependency>
             <groupId>me.ridog</groupId>
             <artifactId>blog-valentine-entity</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- service -->
+        <!-- dao -->
         <dependency>
             <groupId>me.ridog</groupId>
-            <artifactId>blog-valentine-service</artifactId>
+            <artifactId>blog-valentine-dao</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- spring boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>
