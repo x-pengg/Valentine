@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan("me.ridog.valentine.dao")
+@MapperScan("me.ridog.valentine.mapper")
 public class DBConfig {
 
     @Value("${spring.dataSource.driverClassName}")

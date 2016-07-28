@@ -8,6 +8,8 @@ import me.ridog.valentine.util.LogUitls;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * Created by Tate on 2016/7/21.
  */
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements IUserService {
 
 
-    @Autowired
+    @Resource
     UserMapper userMapper;
 
     public void createUser(User user) {
