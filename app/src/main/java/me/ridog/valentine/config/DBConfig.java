@@ -56,7 +56,7 @@ public class DBConfig {
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setTypeAliasesPackage("me.ridog.valentine.pojo.*");
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sessionFactory.setMapperLocations(resolver.getResources("classpath*:me/ridog/valentine/dao/sqlMapper/**/**.xml"));
+        sessionFactory.setMapperLocations(resolver.getResources("classpath*:sqlMapper/**/**.xml"));
         return sessionFactory.getObject();
     }
 

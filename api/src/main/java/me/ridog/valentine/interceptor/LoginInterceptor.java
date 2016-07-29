@@ -1,6 +1,8 @@
 package me.ridog.valentine.interceptor;
 
 import com.alibaba.fastjson.JSON;
+import me.ridog.valentine.APIResult;
+import me.ridog.valentine.ErrorCode;
 import me.ridog.valentine.annotation.NeedLogin;
 import me.ridog.valentine.util.LogUitls;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -25,6 +27,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                     .getMethod().getName() + "   arguments:"+JSON.toJSONString(request.getParameterMap()));
             if (needLogin(handlerMethod)) {
                 LogUitls.info("需要登录");
+                response.getWriter().write(APIResult.newRs().fail().errCode(ErrorCode.NEED_LOGIN).errMsg("需要登录").build());
             }
 
         }

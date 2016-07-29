@@ -1,5 +1,6 @@
 package me.ridog.valentine.service.impl;
 
+import me.ridog.valentine.exception.BlogException;
 import me.ridog.valentine.mapper.auto.UserMapper;
 import me.ridog.valentine.pojo.auto.User;
 import me.ridog.valentine.result.UserResult;
@@ -32,7 +33,7 @@ public class UserServiceImpl implements IUserService {
         LogUitls.info("获取用户, ID:" + id);
         User user = userMapper.selectByPrimaryKey(id);
         if (user==null) {
-            throw new NullPointerException();
+            throw new BlogException();
         }
         UserResult userResult = new UserResult();
         userResult.setId(user.getUid());

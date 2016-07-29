@@ -27,6 +27,12 @@ public class LogUitls {
 
     }
 
+    public static void info(String format, Object... arguments){
+        logger.info(format, arguments);
+    }
+
+
+
     public static void error(String err){
         logger.error("【"+err+"】");
     }
