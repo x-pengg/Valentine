@@ -3,8 +3,8 @@ package me.ridog.valentine.controller.error;
 import me.ridog.valentine.APIResult;
 import me.ridog.valentine.ErrorCode;
 import me.ridog.valentine.exception.BlogException;
-import org.apache.ibatis.javassist.NotFoundException;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,10 +35,8 @@ public class GlobalExceptionHandler implements HandlerExceptionResolver {
     public String errMsg(Exception ex){
         if (ex instanceof BlogException) {
             return APIResult.newRs().fail().errCode(((BlogException) ex).getCode()).errMsg(((BlogException) ex).getMsg()).build();
-        } else if (ex instanceof IllegalArgumentException) {
+        } else if (ex instanceof IllegalArgumentException || ex instanceof MissingServletRequestParameterException) {
             return APIResult.newRs().fail().errCode(ErrorCode.PARAM_ERROR).errMsg("参数错误").build();
-        } else if(ex instanceof NotFoundException){
-            return APIResult.newRs().fail().errCode(ErrorCode.NOTFOUND).errMsg("错误的url").build();
         }else{
             return APIResult.newRs().fail().errCode(ErrorCode.SYSTEM_BUSY).errMsg("系统繁忙").build();
         }

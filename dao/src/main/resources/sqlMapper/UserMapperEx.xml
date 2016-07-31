@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.ridog.valentine.mapper.IUserMapper">
+
+    <select id="select" resultMap="me.ridog.valentine.mapper.auto.UserMapper.BaseResultMap">
+        SELECT
+        <include refid="me.ridog.valentine.mapper.auto.UserMapper.Base_Column_List"/>
+        FROM valentine_users
+        WHERE name = #{username} and password = #{password}
+    </select>
+
+    <select id="selectByMail" resultMap="me.ridog.valentine.mapper.auto.UserMapper.BaseResultMap"
+            parameterType="java.lang.String">
+        SELECT
+        <include refid="me.ridog.valentine.mapper.auto.UserMapper.Base_Column_List"/>
+        FROM valentine_users
+        WHERE mail = #{mail}
+    </select>
+
+    <select id="selectByName" resultMap="me.ridog.valentine.mapper.auto.UserMapper.BaseResultMap"
+            parameterType="java.lang.String">
+        SELECT
+        <include refid="me.ridog.valentine.mapper.auto.UserMapper.Base_Column_List"/>
+        FROM valentine_users
+        WHERE name = #{name}
+    </select>
+
+</mapper>

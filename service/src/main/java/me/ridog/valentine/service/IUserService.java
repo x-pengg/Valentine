@@ -1,6 +1,7 @@
 package me.ridog.valentine.service;
 
 
+import me.ridog.valentine.APIResult;
 import me.ridog.valentine.pojo.auto.User;
 import me.ridog.valentine.result.UserResult;
 
@@ -9,7 +10,9 @@ import me.ridog.valentine.result.UserResult;
  */
 public interface IUserService {
 
-    void createUser(User user);
-
     UserResult getUser(Integer id);
+
+    UserResult login(String username, String password);
+
+    void register(String username, String password, String mail);
 }

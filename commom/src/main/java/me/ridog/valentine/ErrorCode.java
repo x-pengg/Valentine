@@ -29,5 +29,12 @@ public class ErrorCode {
     // 需要管理员登录
     public static final Integer NEED_LOGIN = 200002;
 
+    // 用户不存在或无效
+    public static final Integer ACCOUNT_INVALID = 200003;
+
+    // 用户或邮箱已存在
+    public static final Integer ACCOUNT_EXIST = 200004;
+
+
 
 }

@@ -3,7 +3,7 @@ package me.ridog.valentine.exception;
 /**
  * Created by Tate on 2016/7/29.
  */
-public class BlogException extends RuntimeException {
+public final class BlogException extends RuntimeException {
 
     private Integer code;
     private String msg;
@@ -23,4 +23,14 @@ public class BlogException extends RuntimeException {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    public BlogException(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public BlogException() {
+    }
+
+
 }
