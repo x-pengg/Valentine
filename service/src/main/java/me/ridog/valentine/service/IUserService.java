@@ -1,8 +1,6 @@
 package me.ridog.valentine.service;
 
 
-import me.ridog.valentine.APIResult;
-import me.ridog.valentine.pojo.auto.User;
 import me.ridog.valentine.result.UserResult;
 
 /**

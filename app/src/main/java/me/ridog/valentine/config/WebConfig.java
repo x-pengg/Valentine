@@ -2,6 +2,7 @@ package me.ridog.valentine.config;
 
 import me.ridog.valentine.controller.error.GlobalExceptionHandler;
 import me.ridog.valentine.filter.CORSFilter;
+import me.ridog.valentine.filter.HttpFilter;
 import me.ridog.valentine.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public CORSFilter CORSFilter() {
         return new CORSFilter();
+    }
+
+
+    @Bean
+    public HttpFilter httpFilter () {
+        return new HttpFilter();
     }
 
     @Override

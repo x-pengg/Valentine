@@ -15,13 +15,13 @@ import javax.annotation.Resource;
  * Created by Tate on 2016/7/21.
  */
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/user")
 public class UserController extends BaseController {
 
     @Resource
     IUserService userService;
 
-    @RequestMapping(value = "user/{id:[0-9]+}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id:[0-9]+}", method = RequestMethod.GET)
     @NeedLogin
     public String getUser(@PathVariable("id") Integer id) {
         UserResult user = userService.getUser(id);
@@ -35,7 +35,9 @@ public class UserController extends BaseController {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(username));
         Preconditions.checkArgument(!Strings.isNullOrEmpty(password));
 
-        userService.login(username, password);
+        UserResult userResult = userService.login(username, password);
+
+        ctx().setLoginSession(userResult);
         return APIResult.newRs().success().build();
     }
 

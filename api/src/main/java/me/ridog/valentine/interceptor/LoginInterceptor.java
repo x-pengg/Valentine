@@ -5,6 +5,7 @@ import me.ridog.valentine.APIResult;
 import me.ridog.valentine.ErrorCode;
 import me.ridog.valentine.annotation.NeedLogin;
 import me.ridog.valentine.exception.BlogException;
+import me.ridog.valentine.filter.RequestContext;
 import me.ridog.valentine.util.LogUitls;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -26,7 +27,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             LogUitls.info("URL:"+uri+"->method:" + handlerMethod.getBean().getClass()
                     .getSimpleName() + "." + handlerMethod
                     .getMethod().getName() + "   arguments:"+JSON.toJSONString(request.getParameterMap()));
-            if (needLogin(handlerMethod)) {
+            if (needLogin(handlerMethod) && !RequestContext.isLogined(request)) {
                 LogUitls.info("需要登录");
                 throw new BlogException(ErrorCode.NEED_LOGIN, "需要登录");
             }
