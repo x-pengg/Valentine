@@ -1,8 +1,7 @@
 package me.ridog.valentine.interceptor;
 
 import com.alibaba.fastjson.JSON;
-import me.ridog.valentine.APIResult;
-import me.ridog.valentine.ErrorCode;
+import me.ridog.valentine.resp.ErrorCode;
 import me.ridog.valentine.annotation.NeedLogin;
 import me.ridog.valentine.exception.BlogException;
 import me.ridog.valentine.filter.RequestContext;

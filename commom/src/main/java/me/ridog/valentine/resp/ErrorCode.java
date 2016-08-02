@@ -1,4 +1,4 @@
-package me.ridog.valentine;
+package me.ridog.valentine.resp;
 
 /**
  * Created by Tate on 2016/7/29.

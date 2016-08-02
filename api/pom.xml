@@ -32,7 +32,7 @@
             <artifactId>blog-valentine-commom</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- commom -->
+        <!-- entity -->
         <dependency>
             <groupId>me.ridog</groupId>
             <artifactId>blog-valentine-entity</artifactId>

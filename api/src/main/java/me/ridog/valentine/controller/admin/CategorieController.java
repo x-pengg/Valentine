@@ -1,11 +1,12 @@
 package me.ridog.valentine.controller.admin;
 
-import me.ridog.valentine.APIResult;
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
+import me.ridog.valentine.resp.APIResult;
 import me.ridog.valentine.Constants;
-import me.ridog.valentine.annotation.NeedLogin;
-import me.ridog.valentine.pojo.auto.Metas;
-import me.ridog.valentine.result.MetasResult;
-import me.ridog.valentine.service.IMetasService;
+import me.ridog.valentine.pojo.auto.Meta;
+import me.ridog.valentine.result.MetaResult;
+import me.ridog.valentine.service.IMetaService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,31 +25,33 @@ import java.util.List;
 public class CategorieController {
 
     @Resource
-    private IMetasService metasService;
+    private IMetaService MetaService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String getCategories(){
-        List<MetasResult> metas = metasService.getAll(Constants.CATEGORIE);
-        return APIResult.newRs().success().data(metas).build();
+        List<MetaResult> Meta = MetaService.getAll(Constants.CATEGORIE);
+        return APIResult.newRs().success().data(Meta).build();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addCategories(Metas metas){
-        metas.setType(Constants.CATEGORIE);
-        metasService.addMetas(metas);
+    public String addCategories(Meta Meta) {
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(Meta.getSlug()));
+        Meta.setType(Constants.CATEGORIE);
+        MetaService.addMeta(Meta);
         return APIResult.newRs().success().build();
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public String modifyCategories(Metas metas){
-        metasService.modifyMetas(metas);
-        metas.setType(Constants.CATEGORIE);
+    public String modifyCategories(Meta meta) {
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(meta.getSlug()));
+        MetaService.modifyMeta(meta);
+        meta.setType(Constants.CATEGORIE);
         return APIResult.newRs().success().build();
     }
 
     @RequestMapping(value = "/{id:[0-9]+}",method = RequestMethod.DELETE)
     public String deleteCategories(@PathVariable("id") Integer id){
-        metasService.deleteMetas(id);
+        MetaService.deleteMeta(id);
         return APIResult.newRs().success().build();
     }
 }

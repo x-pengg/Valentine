@@ -2,7 +2,9 @@ package me.ridog.valentine.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import me.ridog.valentine.interceptor.PageInterceptor;
 import me.ridog.valentine.util.LogUitls;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -57,6 +59,8 @@ public class DBConfig {
         sessionFactory.setTypeAliasesPackage("me.ridog.valentine.pojo.*");
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         sessionFactory.setMapperLocations(resolver.getResources("classpath*:sqlMapper/**/**.xml"));
+        PageInterceptor pageInterceptor = new PageInterceptor();
+        sessionFactory.setPlugins(new Interceptor[]{pageInterceptor});
         return sessionFactory.getObject();
     }
 

@@ -1,7 +1,7 @@
 package me.ridog.valentine.controller.error;
 
-import me.ridog.valentine.APIResult;
-import me.ridog.valentine.ErrorCode;
+import me.ridog.valentine.resp.APIResult;
+import me.ridog.valentine.resp.ErrorCode;
 import me.ridog.valentine.exception.BlogException;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.web.bind.MissingServletRequestParameterException;

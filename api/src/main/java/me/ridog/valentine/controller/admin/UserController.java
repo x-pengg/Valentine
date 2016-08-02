@@ -2,7 +2,7 @@ package me.ridog.valentine.controller.admin;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import me.ridog.valentine.APIResult;
+import me.ridog.valentine.resp.APIResult;
 import me.ridog.valentine.annotation.NeedLogin;
 import me.ridog.valentine.controller.BaseController;
 import me.ridog.valentine.result.UserResult;

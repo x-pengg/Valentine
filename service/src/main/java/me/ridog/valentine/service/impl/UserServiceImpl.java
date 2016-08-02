@@ -1,6 +1,6 @@
 package me.ridog.valentine.service.impl;
 
-import me.ridog.valentine.ErrorCode;
+import me.ridog.valentine.resp.ErrorCode;
 import me.ridog.valentine.exception.BlogException;
 import me.ridog.valentine.mapper.IUserMapper;
 import me.ridog.valentine.mapper.auto.UserMapper;
@@ -9,7 +9,6 @@ import me.ridog.valentine.result.UserResult;
 import me.ridog.valentine.service.IUserService;
 import me.ridog.valentine.util.LogUitls;
 import me.ridog.valentine.util.MD5Utils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

@@ -3,7 +3,7 @@ package me.ridog.valentine.result;
 /**
  * Created by Tate on 2016/8/1.
  */
-public class MetasResult {
+public class MetaResult {
 
     private Integer mid;
     private String name;

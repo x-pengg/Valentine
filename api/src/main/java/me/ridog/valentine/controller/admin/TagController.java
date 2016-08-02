@@ -1,11 +1,12 @@
 package me.ridog.valentine.controller.admin;
 
-import me.ridog.valentine.APIResult;
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
+import me.ridog.valentine.resp.APIResult;
 import me.ridog.valentine.Constants;
-import me.ridog.valentine.annotation.NeedLogin;
-import me.ridog.valentine.pojo.auto.Metas;
-import me.ridog.valentine.result.MetasResult;
-import me.ridog.valentine.service.IMetasService;
+import me.ridog.valentine.pojo.auto.Meta;
+import me.ridog.valentine.result.MetaResult;
+import me.ridog.valentine.service.IMetaService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,31 +24,33 @@ import java.util.List;
 public class TagController {
 
     @Resource
-    private IMetasService metasService;
+    private IMetaService MetaService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String getTags(){
-        List<MetasResult> metas = metasService.getAll(Constants.TAG);
-        return APIResult.newRs().success().data(metas).build();
+        List<MetaResult> Meta = MetaService.getAll(Constants.TAG);
+        return APIResult.newRs().success().data(Meta).build();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addTag(Metas metas){
-        metas.setType(Constants.TAG);
-        metasService.addMetas(metas);
+    public String addTag(Meta meta) {
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(meta.getSlug()));
+        meta.setType(Constants.TAG);
+        MetaService.addMeta(meta);
         return APIResult.newRs().success().build();
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public String modifyTag(Metas metas){
-        metas.setType(Constants.TAG);
-        metasService.modifyMetas(metas);
+    public String modifyTag(Meta meta) {
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(meta.getSlug()));
+        meta.setType(Constants.TAG);
+        MetaService.modifyMeta(meta);
         return APIResult.newRs().success().build();
     }
 
     @RequestMapping(value = "/{id:[0-9]+}",method = RequestMethod.DELETE)
     public String deleteTag(@PathVariable("id") Integer id){
-        metasService.deleteMetas(id);
+        MetaService.deleteMeta(id);
         return APIResult.newRs().success().build();
     }
 
