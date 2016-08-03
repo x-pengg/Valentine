@@ -33,7 +33,7 @@ public class PageInterceptor implements Interceptor {
             BoundSql boundSql = (BoundSql) metaStatementHandler.getValue("delegate.boundSql");
             Object parameterObject = boundSql.getParameterObject();
             // 重写分页
-            if (null != parameterObject) {
+            if (null != parameterObject && parameterObject instanceof Page<?>) {
                 Page<?> page = (Page<?>) (parameterObject);
                 if (null != page) {
                     String sql = boundSql.getSql();

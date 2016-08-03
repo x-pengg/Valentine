@@ -1,10 +1,10 @@
 package me.ridog.valentine.service.impl;
 
+import me.ridog.valentine.mapper.auto.UserMapper;
+import me.ridog.valentine.pojo.auto.User;
 import me.ridog.valentine.resp.ErrorCode;
 import me.ridog.valentine.exception.BlogException;
 import me.ridog.valentine.mapper.IUserMapper;
-import me.ridog.valentine.mapper.auto.UserMapper;
-import me.ridog.valentine.pojo.auto.User;
 import me.ridog.valentine.result.UserResult;
 import me.ridog.valentine.service.IUserService;
 import me.ridog.valentine.util.LogUitls;
@@ -12,6 +12,7 @@ import me.ridog.valentine.util.MD5Utils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * Created by Tate on 2016/7/21.
@@ -73,7 +74,7 @@ public class UserServiceImpl implements IUserService {
         user.setName(username);
         user.setPassword(MD5Utils.MD5(password));
         user.setMail(mail);
-        user.setCreated(System.currentTimeMillis());
+        user.setCreated(new Date());
         userMapper.insert(user);
         LogUitls.info("新用户注册");
     }

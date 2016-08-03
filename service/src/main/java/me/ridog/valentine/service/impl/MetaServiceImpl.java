@@ -22,7 +22,7 @@ public class MetaServiceImpl implements IMetaService {
     @Autowired
     private IMetaMapper MetaMapperEx;
     @Autowired
-    private MetaMapper MetaMapper;
+    private MetaMapper metaMapper;
 
     public List<MetaResult> getAll(String type) {
         List<Meta> Metaes = MetaMapperEx.selectAll(type);
@@ -36,14 +36,14 @@ public class MetaServiceImpl implements IMetaService {
     }
 
     public int addMeta(Meta meta) {
-        return MetaMapper.insert(meta);
+        return metaMapper.insert(meta);
     }
 
     public int modifyMeta(Meta meta) {
-        return MetaMapper.updateByPrimaryKey(meta);
+        return metaMapper.updateByPrimaryKey(meta);
     }
 
     public void deleteMeta(Integer id) {
-        MetaMapper.deleteByPrimaryKey(id);
+        metaMapper.deleteByPrimaryKey(id);
     }
 }

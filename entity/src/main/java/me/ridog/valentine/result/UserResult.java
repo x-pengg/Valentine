@@ -1,5 +1,7 @@
 package me.ridog.valentine.result;
 
+import java.util.Date;
+
 /**
  * Created by Tate on 2016/7/28.
  */
@@ -8,8 +10,8 @@ public class UserResult {
     private Integer id;
     private String username;
     private String mail;
-    private Long created;
-    private Long activated;
+    private Date created;
+    private Date activated;
 
     public Integer getId() {
         return id;
@@ -35,19 +37,19 @@ public class UserResult {
         this.mail = mail;
     }
 
-    public Long getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Long created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public Long getActivated() {
+    public Date getActivated() {
         return activated;
     }
 
-    public void setActivated(Long activated) {
+    public void setActivated(Date activated) {
         this.activated = activated;
     }
 }

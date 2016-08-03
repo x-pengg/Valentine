@@ -10,8 +10,8 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="mail" property="mail" jdbcType="VARCHAR" />
-    <result column="created" property="created" jdbcType="BIGINT" />
-    <result column="activated" property="activated" jdbcType="BIGINT" />
+      <result column="created" property="created" jdbcType="TIMESTAMP"/>
+      <result column="activated" property="activated" jdbcType="TIMESTAMP"/>
   </resultMap>
   <sql id="Base_Column_List" >
     <!--
@@ -46,8 +46,8 @@
     insert into valentine_users (uid, name, password, 
       mail, created, activated
       )
-    values (#{uid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{mail,jdbcType=VARCHAR}, #{created,jdbcType=BIGINT}, #{activated,jdbcType=BIGINT}
+    values (#{uid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{mail,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{activated,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="me.ridog.valentine.pojo.auto.User" >
@@ -90,10 +90,10 @@
         #{mail,jdbcType=VARCHAR},
       </if>
       <if test="created != null" >
-        #{created,jdbcType=BIGINT},
+          #{created,jdbcType=TIMESTAMP},
       </if>
       <if test="activated != null" >
-        #{activated,jdbcType=BIGINT},
+          #{activated,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -114,10 +114,10 @@
         mail = #{mail,jdbcType=VARCHAR},
       </if>
       <if test="created != null" >
-        created = #{created,jdbcType=BIGINT},
+          created = #{created,jdbcType=TIMESTAMP},
       </if>
       <if test="activated != null" >
-        activated = #{activated,jdbcType=BIGINT},
+          activated = #{activated,jdbcType=TIMESTAMP},
       </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
@@ -131,8 +131,8 @@
     set name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       mail = #{mail,jdbcType=VARCHAR},
-      created = #{created,jdbcType=BIGINT},
-      activated = #{activated,jdbcType=BIGINT}
+      created = #{created,jdbcType=TIMESTAMP},
+      activated = #{activated,jdbcType=TIMESTAMP}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -10,4 +10,6 @@ public interface IContentService {
 
     Page<Content> getByPage(Page<Content> page);
 
+    Content getById(Integer cid);
+
 }

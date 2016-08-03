@@ -20,4 +20,9 @@ public class Constants {
      * 分类
      */
     public static final String CATEGORIE = "categorie";
+
+    /**
+     * 文章分隔符
+     */
+    public static final String MORE = "<!-- more -->";
 }
