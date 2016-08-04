@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface IContentMapper {
 
+    Content selectBySlug(String slug);
+
     List<Content> findByPage(Page<Content> page);
 
     List<ArchiveResult> selectContentIdGroup();

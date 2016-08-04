@@ -2,12 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="me.ridog.valentine.mapper.IContentMapper">
 
+
+    <select id="selectBySlug" resultType="me.ridog.valentine.pojo.auto.Content">
+        select<include refid="me.ridog.valentine.mapper.auto.ContentMapper.Base_Column_List"/>,text from
+        valentine_contents
+        where slug = #{slug}
+    </select>
+
     <select id="findByPage" resultMap="me.ridog.valentine.mapper.auto.ContentMapper.ResultMapWithBLOBs">
         select
         <include refid="me.ridog.valentine.mapper.auto.ContentMapper.Base_Column_List"/>,text
         from valentine_contents order by created desc
     </select>
-
 
     <select id="selectContentIdGroup" resultType="me.ridog.valentine.result.ArchiveResult">
        select DATE_FORMAT(created,'%Y') as year, GROUP_CONCAT( cid SEPARATOR "," ) id  from valentine_contents group by year asc

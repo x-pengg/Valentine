@@ -15,6 +15,8 @@ public interface IContentService {
 
     Content getById(Integer cid);
 
+    Content getBySlug(String slug);
+
     List<ArchiveResult> getArchive();
 
 }

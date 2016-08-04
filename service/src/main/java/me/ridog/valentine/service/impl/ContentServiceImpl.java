@@ -32,6 +32,10 @@ public class ContentServiceImpl implements IContentService {
         return contentMapper.selectByPrimaryKey(cid);
     }
 
+    public Content getBySlug(String slug) {
+        return contentMapperEx.selectBySlug(slug);
+    }
+
     public List<ArchiveResult> getArchive() {
         List<ArchiveResult> archiveResults = contentMapperEx.selectContentIdGroup();
         for (ArchiveResult archiveResult : archiveResults) {
