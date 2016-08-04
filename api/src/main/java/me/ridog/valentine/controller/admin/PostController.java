@@ -4,6 +4,7 @@ import me.ridog.valentine.Constants;
 import me.ridog.valentine.db.Page;
 import me.ridog.valentine.pojo.auto.Content;
 import me.ridog.valentine.resp.APIResult;
+import me.ridog.valentine.result.ArchiveResult;
 import me.ridog.valentine.service.IContentService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Tate on 2016/8/1.
@@ -28,8 +30,11 @@ public class PostController {
         Page<Content> pages = contentService.getByPage(page);
         for (Content content : pages.getPageData()) {
             int index = content.getText().indexOf(Constants.MORE);
-            if (index >= 0)
+            if (index >= 0) {
                 content.setText(content.getText().substring(0, index) + "...");
+            } else if (content.getText().length() > 100) {
+                content.setText(content.getText().substring(0, 100) + "...");
+            }
         }
         return APIResult.newRs().success().data(pages).build();
     }
@@ -37,6 +42,11 @@ public class PostController {
     @RequestMapping(value = "/{cid}", method = RequestMethod.GET)
     public String getPost(@PathVariable("cid") Integer cid) {
         return APIResult.newRs().success().data(contentService.getById(cid)).build();
+    }
+
+    @RequestMapping(value = "archive", method = RequestMethod.GET)
+    public String getArchive() {
+        return APIResult.newRs().success().data(contentService.getArchive()).build();
     }
 
 }

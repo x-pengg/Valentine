@@ -3,9 +3,21 @@
 <mapper namespace="me.ridog.valentine.mapper.IContentMapper">
 
     <select id="findByPage" resultMap="me.ridog.valentine.mapper.auto.ContentMapper.ResultMapWithBLOBs">
-        SELECT
+        select
         <include refid="me.ridog.valentine.mapper.auto.ContentMapper.Base_Column_List"/>,text
-        FROM valentine_contents
+        from valentine_contents order by created desc
     </select>
 
+
+    <select id="selectContentIdGroup" resultType="me.ridog.valentine.result.ArchiveResult">
+       select DATE_FORMAT(created,'%Y') as year, GROUP_CONCAT( cid SEPARATOR "," ) id  from valentine_contents group by year asc
+    </select>
+
+    <select id="selectArchive" resultType="me.ridog.valentine.result.ArchiveContent">
+        select cid, title, created from valentine_contents where cid in
+        <foreach collection="ids" item="id"
+                 open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>
