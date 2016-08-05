@@ -2,28 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="me.ridog.valentine.mapper.IContentMapper">
 
+    <resultMap id="contentMap" type="me.ridog.valentine.result.ContentResult">
+        <collection property="comments" column="cid" ofType="me.ridog.valentine.pojo.auto.Comment"
+                    select="selectCommentsByCid"></collection>
+    </resultMap>
 
-    <select id="selectBySlug" resultType="me.ridog.valentine.pojo.auto.Content">
+    <!-- 查询文章 -->
+    <select id="selectBySlug" resultMap="contentMap">
         select<include refid="me.ridog.valentine.mapper.auto.ContentMapper.Base_Column_List"/>,text from
         valentine_contents
         where slug = #{slug}
     </select>
+    <!-- 查询评论 -->
+    <select id="selectCommentsByCid" parameterType="java.lang.Integer"
+            resultMap="me.ridog.valentine.mapper.auto.CommentMapper.BaseResultMap">
+        SELECT coid, cid, created, author, mail, url, ip, agent, status, parent,text from valentine_comments
+        where cid = #{cid}
+    </select>
 
+    <!-- 分页查询 -->
     <select id="findByPage" resultMap="me.ridog.valentine.mapper.auto.ContentMapper.ResultMapWithBLOBs">
         select
         <include refid="me.ridog.valentine.mapper.auto.ContentMapper.Base_Column_List"/>,text
         from valentine_contents order by created desc
     </select>
 
+    <!-- 查询各年份里的文章id -->
     <select id="selectContentIdGroup" resultType="me.ridog.valentine.result.ArchiveResult">
        select DATE_FORMAT(created,'%Y') as year, GROUP_CONCAT( cid SEPARATOR "," ) id  from valentine_contents group by year asc
     </select>
 
+    <!-- 查询存档 -->
     <select id="selectArchive" resultType="me.ridog.valentine.result.ArchiveContent">
-        select cid, title, created from valentine_contents where cid in
-        <foreach collection="ids" item="id"
-                 open="(" close=")" separator=",">
+        select cid, slug, title, created from valentine_contents where cid in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
     </select>
+
+
 </mapper>

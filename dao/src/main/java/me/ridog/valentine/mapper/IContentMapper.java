@@ -4,6 +4,7 @@ import me.ridog.valentine.db.Page;
 import me.ridog.valentine.pojo.auto.Content;
 import me.ridog.valentine.result.ArchiveContent;
 import me.ridog.valentine.result.ArchiveResult;
+import me.ridog.valentine.result.ContentResult;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public interface IContentMapper {
 
-    Content selectBySlug(String slug);
+    ContentResult selectBySlug(String slug);
 
     List<Content> findByPage(Page<Content> page);
 

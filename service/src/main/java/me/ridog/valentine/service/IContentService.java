@@ -3,6 +3,7 @@ package me.ridog.valentine.service;
 import me.ridog.valentine.db.Page;
 import me.ridog.valentine.pojo.auto.Content;
 import me.ridog.valentine.result.ArchiveResult;
+import me.ridog.valentine.result.ContentResult;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface IContentService {
 
     Content getById(Integer cid);
 
-    Content getBySlug(String slug);
+    ContentResult getBySlug(String slug);
 
     List<ArchiveResult> getArchive();
 

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.ridog.valentine.mapper.auto.CommentMapper">
+    <resultMap id="BaseResultMap" type="me.ridog.valentine.pojo.auto.Comment">
+        <id column="coid" property="coid" jdbcType="INTEGER"/>
+        <result column="cid" property="cid" jdbcType="INTEGER"/>
+        <result column="created" property="created" jdbcType="TIMESTAMP"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="mail" property="mail" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="agent" property="agent" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="parent" property="parent" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="me.ridog.valentine.pojo.auto.Comment" extends="BaseResultMap">
+        <result column="text" property="text" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+
+    coid, cid, created, author, mail, url, ip, agent, status, parent
+  </sql>
+    <sql id="Blob_Column_List">
+    text
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from valentine_comments
+        where coid = #{coid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    delete from valentine_comments
+    where coid = #{coid,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="me.ridog.valentine.pojo.auto.Comment">
+
+    insert into valentine_comments (coid, cid, created, 
+      author, mail, url, 
+      ip, agent, status, parent, 
+      text)
+    values (#{coid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, 
+      #{author,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{agent,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{parent,jdbcType=INTEGER}, 
+      #{text,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="me.ridog.valentine.pojo.auto.Comment">
+
+        insert into valentine_comments
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="coid != null">
+                coid,
+            </if>
+            <if test="cid != null">
+                cid,
+            </if>
+            <if test="created != null">
+                created,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+            <if test="mail != null">
+                mail,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="ip != null">
+                ip,
+            </if>
+            <if test="agent != null">
+                agent,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="parent != null">
+                parent,
+            </if>
+            <if test="text != null">
+                text,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="coid != null">
+                #{coid,jdbcType=INTEGER},
+            </if>
+            <if test="cid != null">
+                #{cid,jdbcType=INTEGER},
+            </if>
+            <if test="created != null">
+                #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="agent != null">
+                #{agent,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=CHAR},
+            </if>
+            <if test="parent != null">
+                #{parent,jdbcType=INTEGER},
+            </if>
+            <if test="text != null">
+                #{text,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="me.ridog.valentine.pojo.auto.Comment">
+
+        update valentine_comments
+        <set>
+            <if test="cid != null">
+                cid = #{cid,jdbcType=INTEGER},
+            </if>
+            <if test="created != null">
+                created = #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="author != null">
+                author = #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                mail = #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="agent != null">
+                agent = #{agent,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=CHAR},
+            </if>
+            <if test="parent != null">
+                parent = #{parent,jdbcType=INTEGER},
+            </if>
+            <if test="text != null">
+                text = #{text,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where coid = #{coid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="me.ridog.valentine.pojo.auto.Comment">
+    update valentine_comments
+    set cid = #{cid,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      author = #{author,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      agent = #{agent,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      parent = #{parent,jdbcType=INTEGER},
+      text = #{text,jdbcType=LONGVARCHAR}
+    where coid = #{coid,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="me.ridog.valentine.pojo.auto.Comment">
+    update valentine_comments
+    set cid = #{cid,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      author = #{author,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      agent = #{agent,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      parent = #{parent,jdbcType=INTEGER}
+    where coid = #{coid,jdbcType=INTEGER}
+  </update>
+</mapper>

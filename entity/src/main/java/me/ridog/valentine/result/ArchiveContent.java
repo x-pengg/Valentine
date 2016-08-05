@@ -10,6 +10,7 @@ public class ArchiveContent {
     private Integer cid;
     private String title;
     private Date created;
+    private String slug;
 
     public Integer getCid() {
         return cid;
@@ -33,5 +34,13 @@ public class ArchiveContent {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 }

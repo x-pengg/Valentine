@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.ridog.valentine.mapper.auto.ContentMapper">
+    <resultMap id="BaseResultMap" type="me.ridog.valentine.pojo.auto.Content">
+
+        <id column="cid" property="cid" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="slug" property="slug" jdbcType="VARCHAR"/>
+        <result column="created" property="created" jdbcType="TIMESTAMP"/>
+        <result column="modified" property="modified" jdbcType="TIMESTAMP"/>
+        <result column="authorId" property="authorid" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="allowComment" property="allowcomment" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="me.ridog.valentine.pojo.auto.Content" extends="BaseResultMap">
+
+        <result column="text" property="text" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+
+    cid, title, slug, created, modified, authorId, status, allowComment
+  </sql>
+    <sql id="Blob_Column_List">
+
+    text
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from valentine_contents
+        where cid = #{cid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    delete from valentine_contents
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="me.ridog.valentine.pojo.auto.Content">
+
+    insert into valentine_contents (cid, title, slug, 
+      created, modified, authorId, 
+      status, allowComment, text
+      )
+    values (#{cid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{slug,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP}, #{authorid,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{allowcomment,jdbcType=INTEGER}, #{text,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="me.ridog.valentine.pojo.auto.Content">
+
+        insert into valentine_contents
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cid != null">
+                cid,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="slug != null">
+                slug,
+            </if>
+            <if test="created != null">
+                created,
+            </if>
+            <if test="modified != null">
+                modified,
+            </if>
+            <if test="authorid != null">
+                authorId,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="allowcomment != null">
+                allowComment,
+            </if>
+            <if test="text != null">
+                text,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cid != null">
+                #{cid,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="slug != null">
+                #{slug,jdbcType=VARCHAR},
+            </if>
+            <if test="created != null">
+                #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modified != null">
+                #{modified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="authorid != null">
+                #{authorid,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="allowcomment != null">
+                #{allowcomment,jdbcType=INTEGER},
+            </if>
+            <if test="text != null">
+                #{text,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="me.ridog.valentine.pojo.auto.Content">
+
+        update valentine_contents
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="slug != null">
+                slug = #{slug,jdbcType=VARCHAR},
+            </if>
+            <if test="created != null">
+                created = #{created,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modified != null">
+                modified = #{modified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="authorid != null">
+                authorId = #{authorid,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="allowcomment != null">
+                allowComment = #{allowcomment,jdbcType=INTEGER},
+            </if>
+            <if test="text != null">
+                text = #{text,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where cid = #{cid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="me.ridog.valentine.pojo.auto.Content">
+
+    update valentine_contents
+    set title = #{title,jdbcType=VARCHAR},
+      slug = #{slug,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      authorId = #{authorid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      allowComment = #{allowcomment,jdbcType=INTEGER},
+      text = #{text,jdbcType=LONGVARCHAR}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="me.ridog.valentine.pojo.auto.Content">
+
+    update valentine_contents
+    set title = #{title,jdbcType=VARCHAR},
+      slug = #{slug,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      authorId = #{authorid,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      allowComment = #{allowcomment,jdbcType=INTEGER}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>
