@@ -29,14 +29,13 @@ public class CategorieController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getCategories(){
-        List<MetaResult> Meta = MetaService.getAll(Constants.CATEGORIE);
+        List<MetaResult> Meta = MetaService.getAll();
         return APIResult.newRs().success().data(Meta).build();
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String addCategories(Meta Meta) {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(Meta.getSlug()));
-        Meta.setType(Constants.CATEGORIE);
         MetaService.addMeta(Meta);
         return APIResult.newRs().success().build();
     }
@@ -45,7 +44,6 @@ public class CategorieController {
     public String modifyCategories(Meta meta) {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(meta.getSlug()));
         MetaService.modifyMeta(meta);
-        meta.setType(Constants.CATEGORIE);
         return APIResult.newRs().success().build();
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface IMetaService {
 
-    List<MetaResult> getAll(String type);
+    List<MetaResult> getAll();
 
     int addMeta(Meta meta);
 

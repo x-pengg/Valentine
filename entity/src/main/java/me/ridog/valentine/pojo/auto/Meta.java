@@ -8,11 +8,9 @@ public class Meta {
 
     private String slug;
 
-    private String type;
-
     private String description;
 
-    private Integer count;
+    private Integer cid;
 
     public Integer getMid() {
         return mid;
@@ -38,14 +36,6 @@ public class Meta {
         this.slug = slug;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -54,11 +44,11 @@ public class Meta {
         this.description = description;
     }
 
-    public Integer getCount() {
-        return count;
+    public Integer getCid() {
+        return cid;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setCid(Integer cid) {
+        this.cid = cid;
     }
 }

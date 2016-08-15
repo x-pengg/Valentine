@@ -22,6 +22,8 @@ public class Content {
 
     private String text;
 
+    private String metaName;
+
     public Integer getCid() {
         return cid;
     }
@@ -92,5 +94,13 @@ public class Content {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getMetaName() {
+        return metaName;
+    }
+
+    public void setMetaName(String metaName) {
+        this.metaName = metaName;
     }
 }
