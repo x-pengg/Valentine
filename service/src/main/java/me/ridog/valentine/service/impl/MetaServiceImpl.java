@@ -24,8 +24,8 @@ public class MetaServiceImpl implements IMetaService {
     @Autowired
     private MetaMapper metaMapper;
 
-    public List<MetaResult> getAll(String type) {
-        List<Meta> Metaes = MetaMapperEx.selectAll(type);
+    public List<MetaResult> getAll() {
+        List<Meta> Metaes = MetaMapperEx.selectAll();
         ArrayList<MetaResult> metaResults = Lists.newArrayList();
         for (Meta metae : Metaes) {
             MetaResult metaResult = new MetaResult();

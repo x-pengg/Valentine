@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("api/categorie")
+@RequestMapping("api/admin/categorie")
 //@NeedLogin
 public class CategorieController {
 

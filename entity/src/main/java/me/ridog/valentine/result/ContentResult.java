@@ -20,4 +20,5 @@ public class ContentResult extends Content {
         this.comments = comments;
     }
 
+
 }

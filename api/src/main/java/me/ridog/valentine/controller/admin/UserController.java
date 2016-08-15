@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * Created by Tate on 2016/7/21.
  */
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/admin/user")
 public class UserController extends BaseController {
 
     @Resource

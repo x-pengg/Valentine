@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="me.ridog.valentine.mapper.IMetaMapper">
 
-    <select id="selectAll" resultMap="me.ridog.valentine.mapper.auto.MetaMapper.BaseResultMap"
-            parameterType="java.lang.String">
+    <select id="selectAll" resultMap="me.ridog.valentine.mapper.auto.MetaMapper.BaseResultMap">
         SELECT
         <include refid="me.ridog.valentine.mapper.auto.MetaMapper.Base_Column_List"/>
         FROM valentine_meta WHERE type = #{type}

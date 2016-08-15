@@ -3,6 +3,7 @@
 <mapper namespace="me.ridog.valentine.mapper.IContentMapper">
 
     <resultMap id="contentMap" type="me.ridog.valentine.result.ContentResult">
+        <result column="cid" property="cid" javaType="java.lang.Integer" jdbcType="INTEGER"></result>
         <collection property="comments" column="cid" ofType="me.ridog.valentine.pojo.auto.Comment"
                     select="selectCommentsByCid"></collection>
     </resultMap>

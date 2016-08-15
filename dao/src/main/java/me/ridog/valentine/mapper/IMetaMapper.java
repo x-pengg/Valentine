@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface IMetaMapper {
 
-    List<Meta> selectAll(String type);
+    List<Meta> selectAll();
 }
