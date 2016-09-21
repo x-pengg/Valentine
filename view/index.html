@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>敬往事一杯酒</title>
+  <link href="css/style.css" type="text/css" rel="stylesheet">
+  <link href="css/comment.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+  <div class="header-wrap">
+    <div class="header center-container"><a href="#!home" title="敬往事一杯酒" class="logo">敬往事一杯酒</a>
+      <div class="links">
+        <a href="#!archive">archive</a>
+        <a href="#!post/friends">friends</a>
+        <a href="#!post/about">about</a>
+      </div>
+    </div>
+  </div>
+<div class="content-wrap">
+   <div class="content center-container" id="M">
+        <h3>:)</h3>
+  </div>
+</div>
+<div class="footer-wrap">
+  <div class="main-center footer">
+    <p>Themed by &nbsp;<a href="http://copri.me">Jaden Wang &nbsp;</a>Powered by<a href="https://github.com/x-pengg/valentine-blog">&nbsp;Valentine</a></p>
+  </div>
+</div>
+
+<!-- 首页 -->
+<xmp id="home_tp">
+{{#data.pageData}}
+    <div class="post link-title-post">
+        <h2 class="title"><a href="#!post/{{ slug }}">{{ title }}</a></h2>
+    <span class="date">{{ created | fmtDate }}</span>
+    <div class="post-body abstract-content">
+        <div>{{&html}}</div>
+    </div>
+    </div>
+{{/data.pageData}}
+{{$data.totalPage > 1}}
+    <div class="pager">
+        {{$data.pageNo > 1}}
+        <a href="#!pre/{{ data.pageNo-1 }}" class="pre">← new posts</a>
+        {{/data.totalPage}}
+        {{$data.pageNo < data.totalPage}}
+        <a href="#!next/{{ data.pageNo+1  }}" class="next">older posts →</a>
+        {{/data.totalPage}}
+    </div>
+{{/data.totalPage>1}}
+</xmp>
+
+<!-- 正文 -->
+<xmp id="post_tp">
+  <div class="post normal-post">
+      <h1 class="title">{{ title }}<a href="#!post/{{ slug }}" title="permanent link"
+                                           class="perman-link">∞</a></h1>
+    <span class="date">{{created | fmtDate}}</span>
+        <div class="post-body">
+          {{&html}}
+          <p class="eof">· EOF ·</p>
+        </div>
+    </div>
+    <div class="comments">
+        <div id="fb_comments_container">
+            <ul id="fb_comments">
+                {{#comments}}
+                <li class="comment">
+                    <div class="avatar"><img src="https://cdn.v2ex.com/gravatar/{{gravatarPrefix}}.png">
+                    </div>
+                    <div class="c_content comment_body">
+                        <div class="author"><a href="{{url}}" rel="external nofollow"><b>{{author}}</b></a><small>{{created|fmtDate}}</small>
+                        </div>
+                        <div class="comment_content"><p>{{&html}}</p>
+                        </div>
+                    </div>
+                </li>
+                {{/comments}}
+            </ul>
+            <form id="fb_new_comment">
+                <textarea name="content" required ></textarea>
+                <input type="hidden" value="{{ cid }}">
+                <div class="input_body">
+                    <ul>
+                        <li>
+                            <label>Name:</label>
+                            <input type="text" name="author" id="author"  required>
+                        </li>
+                        <li>
+                            <label>Email:</label>
+                            <input type="text" name="email" value="">
+                        </li>
+                        <li>
+                            <label>Site:</label>
+                            <input type="text" name="site" value="">
+                        </li>
+                        <li>
+                            <input id="c_submit" type="button" value="Comment" class="c_button" onclick="comment()">
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</xmp>
+
+  <!-- 存档 -->
+<xmp id="archive_tp">
+    <ul class="archive-list">
+        {{#data}}
+        <li>
+            <p class="year">{{year}}</p>
+            {{#archive}}
+            <div class="post-set"><span class="date">{{created,'month' | fmtDate}}</span>
+                <div class="post-link"><a href="#!post/{{slug}}">{{title}}</a>
+                </div>
+            </div>
+            {{/archive}}
+        </li>
+        {{/data}}
+    </ul>
+</xmp>
+
+
+<script src="module/fetch.min.js"></script>
+<script src="module/marked.min.js"></script>
+<script src="module/templet.js"></script>
+<script src="module/X.js"></script>
+
+<script type="text/javascript">
+
+var $ = function (args) {
+    if (args.indexOf('#') == 0) {
+        return document.querySelectorAll(args)[0];
+    }
+    return document.querySelectorAll(args);
+}
+
+var host = "http://localhost:8080";
+
+/* 加载首页数据 */
+X.get('home',function(){
+  fetch(host+'/api/post')
+          .then(checkStatus)
+          .then(parseJSON)
+          .then(function (json) {
+              var templet = $('#home_tp').innerHTML;
+              render(templet, json);
+          }).catch(printEx);
+});
+
+
+/* 加载文章数据 */
+X.get('post', function (slug) {
+        if (!slug) {
+            alert('传入的文章slug不正确！');
+        return;
+    }
+    fetch(host+'/api/post/' + slug)
+            .then(checkStatus)
+            .then(parseJSON)
+            .then(function (json) {
+                var templet = $('#post_tp').innerHTML;
+                var html = md(json.data.text);
+                json.data.html = html;
+                if (json.data.comments.length > 0) {
+                    for(i in json.data.comments){
+                        json.data.comments[i].html = md(json.data.comments[i].text);
+                    }
+                }
+                var t = 模板.运转(templet, json.data);
+                $('#M').innerHTML = t;
+    }).catch(function(ex) {
+        console.log('parsing failed', ex);
+    });
+});
+
+/* 加载存档数据 */
+X.get('archive',function(){
+    fetch(host+'/api/post/archive')
+            .then(checkStatus)
+            .then(parseJSON)
+            .then(function (json) {
+                var templet = $('#archive_tp').innerHTML,
+                        t = 模板.运转(templet, json);
+                $('#M').innerHTML=t;
+            }).catch(printEx);
+});
+
+/* 注册分页 */
+X.get(['pre','next'],function (pageNo) {
+    fetch(host+'/api/post?pageNo='+pageNo)
+            .then(checkStatus)
+            .then(parseJSON)
+            .then(function (json) {
+                var templet = $('#home_tp').innerHTML;
+                render(templet, json);
+            }).catch(printEx);
+    document.documentElement.scrollTop = document.body.scrollTop =0;
+});
+
+
+fmtDate=function(date,ignore){
+  var months = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+
+  var now = new Date(date),
+   _d = now.getDate(),
+    m_index = now.getMonth(),
+     _y = now.getFullYear(),
+      zero = _d<10?"0"+_d:_d;
+
+    if (ignore) {
+        return months[m_index]+' '+zero;
+    }
+  return months[m_index]+' '+zero+', '+_y;
+}
+
+md=function(markdownString){
+ return marked(markdownString);
+};
+
+render = function (template, json) {
+    if (json.data.pageData) {
+        for(i in json.data.pageData){
+            json.data.pageData[i].html = md(json.data.pageData[i].text);
+        }
+    }else{
+        var html = md(json.data.text);
+        json.data.html = html;
+    }
+    var t = 模板.运转(template,json);
+    $('#M').innerHTML=t;
+}
+
+
+function checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    } else {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+    }
+}
+
+function parseJSON(response) {
+    return response.json();
+}
+
+function printEx(ex) {
+    console.log('parsing failed', ex);
+}
+
+function apiOk(json) {
+    return json.status == 0;
+}
+
+function comment() {
+    if (!$('#fb_new_comment')[0].checkValidity()) {
+        $('#fb_new_comment')[0].reportValidity();
+        return;
+    }
+    fetch("http://localhost:8080/api/comment", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "content=111&cid=9"
+    }).then(checkStatus)
+        .then(parseJSON)
+        .then(function (json) {
+            if (apiOk(json))
+                window.href.reload();
+            else
+                alert("验证不通过");
+        }).catch(printEx);
+}
+
+
+// 初始化路由
+X.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+body{
+    padding-top: 3rem;
+    background: #F6F6F3;
+}
+.container{
+    padding: 3rem 1.5rem;
+}
+
+.nav-item.fr{
+    float: right;
+}
+.valentine-page-title .total-record{
+    font-size: 15px;
+    padding-left: 1em;
+}
+.valentine-page-title .total-record .number{
+    color: #467B96;
+}
+
+.container .valentine-page-search{
+    float: right;
+    text-align: right;
+    padding-top: 1em;
+}
+
+.valentine-page-pagination{
+    float: right;
+    color: #444;
+}
+.btn-outline-valentine {
+    color: #292D33;
+    background-image: none;
+    background-color: transparent;
+    border-color: #E9E9E6;
+}
+.btn-outline-valentine:hover {
+    color: #fff;
+    background-color: #292D33;
+    border-color: #E9E9E6;
+}
+.valentine-page-table{
+    margin-top: 4rem;
+    background: #fff;
+    padding: 1rem;
+}
+
+.valentine-page-table th{
+    border-top:none;
+}
