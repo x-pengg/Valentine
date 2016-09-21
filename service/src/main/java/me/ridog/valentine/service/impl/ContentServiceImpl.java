@@ -32,6 +32,11 @@ public class ContentServiceImpl implements IContentService {
         return page;
     }
 
+    public Page<Content> getByPageOfAdmin(Page<Content> page) {
+        page.setPageData(contentMapperEx.findByPageOfAdmin(page));
+        return page;
+    }
+
     public Content getById(Integer cid) {
         return contentMapper.selectByPrimaryKey(cid);
     }

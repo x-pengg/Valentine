@@ -22,7 +22,9 @@ public class Content {
 
     private String text;
 
-    private String metaName;
+    private Integer categorieId;
+
+    private String categorieName;
 
     public Integer getCid() {
         return cid;
@@ -96,11 +98,19 @@ public class Content {
         this.text = text;
     }
 
-    public String getMetaName() {
-        return metaName;
+    public String getCategorieName() {
+        return categorieName;
     }
 
-    public void setMetaName(String metaName) {
-        this.metaName = metaName;
+    public void setCategorieName(String categorieName) {
+        this.categorieName = categorieName;
+    }
+
+    public Integer getCategorieId() {
+        return categorieId;
+    }
+
+    public void setCategorieId(Integer categorieId) {
+        this.categorieId = categorieId;
     }
 }

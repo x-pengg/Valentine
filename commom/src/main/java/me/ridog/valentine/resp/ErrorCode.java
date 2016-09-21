@@ -36,5 +36,4 @@ public class ErrorCode {
     public static final Integer ACCOUNT_EXIST = 200004;
 
 
-
 }

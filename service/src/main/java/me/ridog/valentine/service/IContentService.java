@@ -14,10 +14,13 @@ public interface IContentService {
 
     Page<Content> getByPage(Page<Content> page);
 
+    Page<Content> getByPageOfAdmin(Page<Content> page);
+
     Content getById(Integer cid);
 
     ContentResult getBySlug(String slug);
 
     List<ArchiveResult> getArchive();
+
 
 }

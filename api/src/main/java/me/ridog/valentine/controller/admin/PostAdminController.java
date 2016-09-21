@@ -16,14 +16,14 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("api/admin/post")
 //@NeedLogin
-public class PostController {
+public class PostAdminController {
 
     @Resource
     private IContentService contentService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String getPost(Page<Content> page) {
-        Page<Content> pages = contentService.getByPage(page);
+        Page<Content> pages = contentService.getByPageOfAdmin(page);
         return APIResult.newRs().success().data(pages).build();
     }
 

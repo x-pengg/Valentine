@@ -26,9 +26,8 @@ public class CommentController extends BaseController {
     public String comment(@ModelAttribute CommentParam commentParam) {
 
         Preconditions.checkArgument(null != commentParam.getCid());
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(commentParam.getContent()));
         Preconditions.checkArgument(!Strings.isNullOrEmpty(commentParam.getAuthor()));
-        Preconditions.checkArgument(!Strings.isNullOrEmpty(commentParam.getEmail()));
-        Preconditions.checkArgument(!Strings.isNullOrEmpty(commentParam.getEmail()));
 
         Comment comment = new Comment();
         comment.setText(commentParam.getContent());

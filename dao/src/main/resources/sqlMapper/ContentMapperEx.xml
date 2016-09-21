@@ -21,11 +21,27 @@
         where cid = #{cid}
     </select>
 
+    <resultMap id="pageMap" type="me.ridog.valentine.pojo.auto.Content">
+        <id column="cid" property="cid" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="slug" property="slug" jdbcType="VARCHAR"/>
+        <result column="created" property="created" jdbcType="TIMESTAMP"/>
+        <result column="modified" property="modified" jdbcType="TIMESTAMP"/>
+        <result column="authorId" property="authorid" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="allowComment" property="allowcomment" jdbcType="INTEGER"/>
+        <result column="text" property="text" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+
     <!-- 分页查询 -->
-    <select id="findByPage" resultMap="me.ridog.valentine.mapper.auto.ContentMapper.ResultMapWithBLOBs">
-        select
-        <include refid="me.ridog.valentine.mapper.auto.ContentMapper.Base_Column_List"/>,text
-        from valentine_contents order by created desc
+    <select id="findByPage" resultMap="pageMap">
+         select * from valentine_contents order by created desc
+    </select>
+
+    <!-- 后台分页 -->
+    <select id="findByPageOfAdmin" resultMap="pageMap">
+        select vc.*,vm.`name` as categorieName,vm.mid as categorieId from valentine_contents vc
+        left join valentine_metas vm on vc.mid = vm.mid order by created desc
     </select>
 
     <!-- 查询各年份里的文章id -->

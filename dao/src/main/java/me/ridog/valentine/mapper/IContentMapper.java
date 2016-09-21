@@ -18,6 +18,8 @@ public interface IContentMapper {
 
     List<Content> findByPage(Page<Content> page);
 
+    List<Content> findByPageOfAdmin(Page<Content> page);
+
     List<ArchiveResult> selectContentIdGroup();
 
     List<ArchiveContent> selectArchive(@Param("ids") String[] ids);

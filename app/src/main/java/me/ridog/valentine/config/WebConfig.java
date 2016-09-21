@@ -1,7 +1,6 @@
 package me.ridog.valentine.config;
 
 import me.ridog.valentine.controller.error.GlobalExceptionHandler;
-import me.ridog.valentine.filter.CORSFilter;
 import me.ridog.valentine.filter.HttpFilter;
 import me.ridog.valentine.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Bean;
@@ -23,17 +22,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor());
-    }
-
-    @Bean
-    public CORSFilter CORSFilter() {
-        return new CORSFilter();
-    }
-
-
-    @Bean
-    public HttpFilter httpFilter () {
-        return new HttpFilter();
     }
 
     @Override
